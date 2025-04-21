@@ -1,4 +1,4 @@
-class Solution {
+    class Solution {
     public List<Integer> addToArrayForm(int[] num, int k) {
         List<Integer> list = new ArrayList<Integer>();
         int carry = 0, i = num.length - 1;
@@ -28,4 +28,4 @@ class Solution {
             list.add(0, carry);
         return list;
     }
-}
+}                                                                                                           

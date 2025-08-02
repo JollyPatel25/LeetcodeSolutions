@@ -1,29 +1,25 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> list = new ArrayList<>();
+        HashSet<List<Integer>> set = new HashSet<>();
         Arrays.sort(nums);
-        for(int i = 0; i < nums.length - 2; i++)
+        for(int i = 0; i < nums.length; i++)
         {
-            if (i > 0 && nums[i] == nums[i - 1]) continue;
-            int y = i + 1, z = nums.length - 1;
-            while(y < z)
+            int left = i + 1;
+            int right = nums.length - 1;
+            while(left < right)
             {
-                int sum = nums[i] + nums[y] + nums[z];
-                if(sum == 0)
-                {
-                    List<Integer> newList = Arrays.asList(nums[i], nums[y], nums[z]);
-                    list.add(new ArrayList<>(newList));
-                    while (y < z && nums[y] == nums[y + 1]) y++;
-                    while (y < z && nums[z] == nums[z - 1]) z--;
-                    y++;
-                    z--;
-                }
-                else if(sum < 0)
-                    y++;
-                else
-                    z--;
-            }
+                int sum = nums[i] + nums[left] + nums[right];
+                if(sum == 0){
+                    set.add(new ArrayList<>(Arrays.asList(nums[i], nums[left], nums[right])));
+                    while(left < right && nums[left] == nums[left + 1]) left++;
+                    while(left < right && nums[right] == nums[right - 2]) right--;
+                    left++;
+                    right--;
+                } 
+                else if(sum < 0) left++;
+                else right--;
+            } 
         }
-        return list;
+        return new ArrayList<>(set);
     }
 }

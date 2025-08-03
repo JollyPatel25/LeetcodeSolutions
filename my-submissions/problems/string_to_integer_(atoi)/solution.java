@@ -1,51 +1,28 @@
 class Solution {
     public int myAtoi(String s) {
-        int length = s.length(), i = 0;
-        long num = 0;
-        boolean negative = false, num_start = false;
-        while(i <= length - 1)
-        {
-            char c = s.charAt(i);
-            if(c == ' ')
-            {
-                if(num_start)
-                    break;
-            }
-            else if(c == '+')
-            {
-                if(num_start)
-                    break;
-                else
-                    num_start = true;
-            }
-            else if(c == '-')
-            {
-                if(num_start)
-                    break;
-                else
-                    num_start = true;
-                negative = true;
-            }
-            else if(c >= 48 && c <= 57)
-            {
-                if(!num_start)
-                    num_start = true;
-                num = (num * 10) + (c - '0');
-                if (!negative && num > Integer.MAX_VALUE)
-                    return Integer.MAX_VALUE;
-                if (negative && -num < Integer.MIN_VALUE)
-                    return Integer.MIN_VALUE;
-            }
-            else
-                break;
+        int i = 0, n = s.length();
+        int sign = 1;
+        long result = 0;
+
+        // Step 1: Skip leading whitespaces
+        while (i < n && s.charAt(i) == ' ') {
             i++;
         }
-        if(negative)
-            num = -num;
-        if(num < Integer.MIN_VALUE)
-            return Integer.MIN_VALUE;
-        if(num > Integer.MAX_VALUE)
-            return Integer.MAX_VALUE;
-        return (int)num;
+
+        // Step 2: Check sign
+        if (i < n && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
+            sign = (s.charAt(i) == '-') ? -1 : 1;
+            i++;
+        }
+
+        // Step 3: Convert digits and check overflow
+        while (i < n && Character.isDigit(s.charAt(i))) {
+            result = result * 10 + (s.charAt(i) - '0');
+            if (sign * result > Integer.MAX_VALUE) return Integer.MAX_VALUE;
+            if (sign * result < Integer.MIN_VALUE) return Integer.MIN_VALUE;
+            i++;
+        }
+
+        return (int)(sign * result);
     }
 }

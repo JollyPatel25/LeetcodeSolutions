@@ -1,17 +1,16 @@
-import java.util.SortedSet;
-import java.util.TreeSet;
 class Solution {
     public int removeDuplicates(int[] nums) {
-        int count = 0;
-        SortedSet<Integer> sortedSet = new TreeSet<>();
-        for(int i = 0; i < nums.length; i++)
+        int unique = 0;
+        int current = 1;
+        while(current < nums.length)
         {
-            sortedSet.add(nums[i]);
+            if(nums[unique] != nums[current])
+            {
+                unique++;
+                nums[unique] = nums[current];
+            }
+            current++;
         }
-        Integer integerArr[] = sortedSet.toArray(new Integer[0]);
-        for (int i = 0; i < integerArr.length; i++) {
-            nums[i] = integerArr[i];
-        }
-        return sortedSet.size();
+        return unique + 1;
     }
 }

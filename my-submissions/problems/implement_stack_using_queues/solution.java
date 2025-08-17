@@ -1,46 +1,31 @@
 class MyStack {
-    int rear = -1, front1 = -1, temp1 = -1, temp2 = -1, front2 = -1;
-    int queue[] = new int[101];
+    Queue<Integer> q1, q2;
     public MyStack() {
-        
+        q1 = new LinkedList<Integer>();
+        q2 = new LinkedList<Integer>();
     }
+    
     public void push(int x) {
-        queue[++rear] = x;
-        if(front1 == -1)
+        q2.add(x);
+        while(!q1.isEmpty())
         {
-            front1 = rear;
-            front2 = 0;
+            q2.add(q1.remove());
         }
-        else
-        {
-            front1++;
-        }
+        Queue<Integer> q = q1;
+        q1 = q2;
+        q2 = q;
     }
     
     public int pop() {
-        if(front1 == -1 || front2 == -1)
-        {
-            return 0;
-        }
-        if(front1 == front2)
-        {
-            front2--;
-        }
-        front1--;
-        rear--;
-        return queue[front1 + 1];
+        return q1.remove();
     }
     
     public int top() {
-        return queue[rear];
+        return q1.peek();
     }
     
     public boolean empty() {
-        if(front1 == -1 || front2 == -1)
-        {
-            return true;
-        }
-        return false;
+        return q1.isEmpty();
     }
 }
 

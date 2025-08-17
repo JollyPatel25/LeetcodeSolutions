@@ -1,19 +1,19 @@
 class Solution {
     public boolean isHappy(int n) {
-        HashSet<Integer> hash = new HashSet<>();
-        while (n != 1 && !hash.contains(n)) {
-            hash.add(n);
-            n = getSumOfSquares(n);
+        HashSet<Integer> set = new HashSet<Integer>();
+        while(n != 1 && !set.contains(n))
+        {
+            set.add(n);
+            int count = 0;
+            int temp = n;
+            while(temp > 0)
+            {
+                int last = temp % 10;
+                count += last * last;
+                temp = (int)temp / 10;
+            }
+            n = count;
         }
         return n == 1;
-    }
-    public int getSumOfSquares(int num) {
-        int sum = 0;
-        while (num > 0) {
-            int digit = num % 10;
-            sum += digit * digit;
-            num /= 10;
-        }
-        return sum;
     }
 }

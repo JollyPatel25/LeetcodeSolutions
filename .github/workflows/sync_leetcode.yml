@@ -5,7 +5,6 @@ on:
   schedule:
     - cron: "0 0 * * *" # Runs completely automatically every single night at midnight UTC
 
-# 🔓 THIS LINE BYPASSES STEP 4 AND GRANTS WRITE ACCESS DIRECTLY
 permissions:
   contents: write
 
@@ -21,5 +20,3 @@ jobs:
           leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
           leetcode-session: ${{ secrets.LEETCODE_SESSION }}
           destination-folder: my-submissions
-          verbose: true
-          commit-header: '[LeetCode Sync]'

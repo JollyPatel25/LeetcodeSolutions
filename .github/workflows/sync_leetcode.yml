@@ -1,9 +1,9 @@
 name: Sync Leetcode
 
 on:
-  workflow_dispatch: # Allows you to click a button to run it manually
+  workflow_dispatch: 
   schedule:
-    - cron: "0 0 * * *" # Runs completely automatically every single night at midnight UTC
+    - cron: "0 0 * * *"
 
 permissions:
   contents: write
@@ -11,6 +11,10 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # 🛡️ This line tells GitHub to allow the script engine to close without crashing
+    env:
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 
     steps:
       - name: Sync

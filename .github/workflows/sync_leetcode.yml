@@ -1,16 +1,16 @@
 name: Sync Leetcode
 
 on:
-  workflow_dispatch: # Allows you to click a button to run it manually
+  workflow_dispatch: 
   schedule:
-    - cron: "0 0 * * *" # Runs completely automatically every single night at midnight UTC
+    - cron: "0 0 * * *"
 
 permissions:
   contents: write
 
 jobs:
   build:
-    runs-runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Sync

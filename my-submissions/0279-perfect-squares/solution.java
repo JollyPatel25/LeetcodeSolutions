@@ -1,6 +1,5 @@
 class Solution {
     public int numSquares(int n) {
-        List<Integer> squares = new ArrayList<Integer>();
         int sqrt = (int)Math.sqrt(n);
 
         int dp[] = new int[n + 1];
